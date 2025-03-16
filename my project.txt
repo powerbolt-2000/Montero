@@ -1,0 +1,36 @@
+import shutil
+
+# إنشاء مجلد المشروع وإضافة الملفات إليه
+project_root = "/mnt/data/my_project"
+
+# إنشاء هيكلية المشروع
+folders = [
+    "frontend",
+    "backend",
+    "database",
+    "ai_monitor",
+    "docs"
+]
+
+for folder in folders:
+    shutil.os.makedirs(f"{project_root}/{folder}", exist_ok=True)
+
+# إنشاء بعض الملفات الأساسية
+files = {
+    "README.md": "# مشروع المنصة الذكية",
+    ".gitignore": "node_modules/\n.env\n__pycache__/",
+    "frontend/index.js": 'console.log("Frontend Initialized");',
+    "backend/server.js": 'console.log("Backend Initialized");',
+    "database/db.js": 'console.log("Database Connected");',
+    "ai_monitor/monitor.py": 'print("AI Monitor Running");'
+}
+
+for file, content in files.items():
+    with open(f"{project_root}/{file}", "w") as f:
+        f.write(content)
+
+# ضغط المشروع في ملف ZIP
+zip_file = "/mnt/data/my_project.zip"
+shutil.make_archive(zip_file.replace(".zip", ""), 'zip', project_root)
+
+zip_file
